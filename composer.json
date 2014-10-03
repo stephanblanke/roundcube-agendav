@@ -1,0 +1,25 @@
+{
+    "name": "stephanblanke/agendav",
+    "type": "roundcube-plugin",
+    "description": "Integrates AgenDAV into RoundCube",
+    "keywords": ["agendav","calendar","event","task"],
+    "homepage": "https://github.com/stephanblanke/roundcube-agendav",
+    "license": "GPL-3.0",
+    "version": "0.1.0",
+    "authors": [
+        {
+            "name": "Stephan Blanke",
+            "email": "stephanblanke@users.noreply.github.com",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://plugins.roundcube.net"
+        }
+    ],
+    "require": {
+        "roundcube/plugin-installer": ">=0.1.3"
+    }
+}

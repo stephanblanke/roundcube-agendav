@@ -1,0 +1,28 @@
+
+#agendavcontentframe {
+	border: 0;
+	border-radius: 4px;
+}
+
+#mainscreen .readtext {
+	margin: 0 auto;
+}
+
+#taskbar a.button-agendav span.button-inner {
+	height: 19px;
+	background-position: 0 -142px;
+}
+
+#agendavtoolbar a.button.prefs {
+	background-position: center -850px;
+}
+
+#agendavtoolbar a.button.index {
+	background-position: center -1176px;
+}
+
+#taskbar a.button-agendav:hover span.button-inner,
+#taskbar a.button-agendav.button-selected span.button-inner {
+	height: 19px;
+	background-position: 0 -166px;
+}

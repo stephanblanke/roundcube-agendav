@@ -1,0 +1,84 @@
++------------------------------+
+| AgenDAV Plugin for RoundCube |
++------------------------------+
+
+
+
+AUTHOR
+
+Stephan Blanke (stephanblanke@users.noreply.github.com)
+
+
+
+VERSION
+
+0.1.0
+
+
+
+RELEASE DATE
+
+03-10-2014
+
+
+
+INSTALL
+
+1. To install this plugin, copy all files into /plugin/agendav folder and
+   add it to the plugin array in config/config.inc.php:
+
+   // List of active plugins (in plugins/ directory)
+   $rcmail_config['plugins'] = array('agendav');
+
+2. Download AgenDAV from https://github.com/adobo/agendav/releases/tag/1.2.6.2 and
+   extract it into /plugin/agendav folder:
+
+   The resulting folder structure should look like this:
+   /your/path/to/roundcube/plugins/agendav/agendav-1.2.6.2
+
+   Example (Linux):
+
+   cd /your/path/to/roundcube/plugins/agendav
+   wget https://github.com/adobo/agendav/archive/1.2.6.2.tar.gz -O-|tar xzf -
+
+3. Overwrite existing css to hide some unneeded buttons / fields.
+   The patched stylesheet is located directly in the plugin root directory.
+   You should copy it to the AgenDAV css directory.
+
+   Example (Linux):
+
+   cp agendav-1.2.6.2.css agendav-1.2.6.2/web/public/css/agendav-1.2.6.2.css
+
+
+
+CONFIGURATION
+
+1. Copy 'config.inc.php.dist' to 'config.inc.php'.
+   Edit the plugin configuration file 'config.inc.php' and set agendav_path.
+
+   // name of agendav root folder
+   $config['agendav_path'] = 'agendav-1.2.6.2';
+
+2. Configure AgenDAV according to the documentation. No special config is needed to
+   allow AgenDAV work with this plugin.
+
+
+
+KNOWN LIMITATIONS
+
+This is just a simple iframe integration and most likely wont run with newer
+develepment snapshots of agendav. The SSO functionality works by manually
+creating the AgenDAV cookie and the respective database entry.
+
+
+
+NOTE
+
+Tested with AgenDAV 1.2.6.2
+
+
+
+LICENCE
+
+Licensed under GNU GPL3 licence.
+Encrypt.php is licensed according to the CodeIgniter License (see LICENSE-CI).

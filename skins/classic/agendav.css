@@ -1,0 +1,43 @@
+/***** Roundcube|Mail AgenDAV task styles *****/
+
+#taskbar a.button-agendav
+{
+  background-image: url('agendav.gif');
+}
+
+.extwin #tabsbar
+{
+  top: 21px;
+  left: 20px;
+  right: 100px;
+  border-bottom: 0;
+}
+
+.closelink {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+}
+
+.agendav-box
+{
+  overflow: auto;
+  background-color: #F2F2F2;
+}
+
+#agendavlicense, #agendavabout
+{
+  width: 46em;
+  padding: 1em 2em;
+}
+
+#agendavlicense a, #agendavabout a
+{
+  color: #900;
+}
+
+#agendavabout
+{
+  margin: 0 auto;
+}
+
