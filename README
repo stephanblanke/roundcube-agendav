@@ -67,8 +67,11 @@ CONFIGURATION
 KNOWN LIMITATIONS
 
 This is just a simple iframe integration and most likely wont run with newer
-develepment snapshots of agendav. The SSO functionality works by manually
+development snapshots of AgenDAV. The SSO functionality works by manually
 creating the AgenDAV cookie and the respective database entry.
+
+The RoundCube language setting is not recognized by AgenDAV, because that is
+not a user setting in AgenDAV.
 
 
 
