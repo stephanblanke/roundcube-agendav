@@ -41,8 +41,9 @@ class agendav extends rcube_plugin
     function login_after($args)
     {
         $rcmail = rcmail::get_instance();
-
-        $dbh = new PDO($rcmail->config->get('agendav_dbtype', false).':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
+        $dbtype = $rcmail->config->get('agendav_dbtype', false);
+        $dbtype = ($dbtype == "mysqli") ? "mysql" : $dbtype;
+        $dbh = new PDO($dbtype.':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
         $stmt = $dbh->prepare('insert into '.$rcmail->config->get('agendav_dbprefix', false).'sessions(session_id, ip_address, user_agent,last_activity,user_data) values (:id, :ip, :user_agent, :last_activity, :user_data)');
         $stmt->bindParam(':id', $guid);
         $stmt->bindParam(':ip', $ip);
@@ -90,8 +91,9 @@ class agendav extends rcube_plugin
     function logout($args)
     {
         $rcmail = rcmail::get_instance();
-
-        $dbh = new PDO($rcmail->config->get('agendav_dbtype', false).':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
+        $dbtype = $rcmail->config->get('agendav_dbtype', false);
+        $dbtype = ($dbtype == "mysqli") ? "mysql" : $dbtype;
+        $dbh = new PDO($dbtype.':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
         $stmt = $dbh->prepare("delete from sessions where session_id=:id");
         $stmt->bindParam(':id', $_SESSION['agendav_sessid']);
         $stmt->execute();
