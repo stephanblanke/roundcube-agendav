@@ -13,10 +13,7 @@ define('BASEPATH','/');
 require_once($config['agendav_path'].'/web/config/database.php');
 require_once($config['agendav_path'].'/web/config/config.php');
 $config['agendav_encryption_key'] = $config['encryption_key'];
-if($db[$active_group]['dbdriver'] == 'postgre')
-    $config['agendav_dbtype'] = 'pgsql';
-else
-    $config['agendav_dbtype'] = $db[$active_group]['dbdriver'];
+$config['agendav_dbtype'] = $db[$active_group]['dbdriver'];
 $config['agendav_dbhost'] = $db[$active_group]['hostname'];
 $config['agendav_dbname'] = $db[$active_group]['database'];
 $config['agendav_dbuser'] = $db[$active_group]['username'];
