@@ -58,7 +58,6 @@ class agendav extends rcube_plugin
     function login_after($args)
     {
         $rcmail = rcmail::get_instance();
-
         $dbh = new PDO($this->get_db_driver().':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
         $stmt = $dbh->prepare('insert into '.$rcmail->config->get('agendav_dbprefix', false).'sessions(session_id, ip_address, user_agent,last_activity,user_data) values (:id, :ip, :user_agent, :last_activity, :user_data)');
         $stmt->bindParam(':id', $guid);
@@ -85,8 +84,11 @@ class agendav extends rcube_plugin
 	$pref_stmt->bindParam(':username', $rcmail->get_user_name());
 	$pref_stmt->execute();
 	$prefs = $pref_stmt->fetch(PDO::FETCH_ASSOC);
+	$options = serialize(json_decode($prefs['options'],true));
+        $options = ($options == "N;")?"a:0:{}":$options;  
+        // need to replace 'null' with an empty array, otherwise agendav fails to load calendars if user prefs are empty
 
-        $user_data = 'a:4:{s:4:"user";s:'.strlen($username).':"'.$username.'";s:6:"passwd";s:'.strlen($password).':"'.$password.'";s:5:"prefs";'.serialize(json_decode($prefs['options'],true)).'s:19:"available_calendars";a:0:{}}';
+        $user_data = 'a:4:{s:4:"user";s:'.strlen($username).':"'.$username.'";s:6:"passwd";s:'.strlen($password).':"'.$password.'";s:5:"prefs";'.$options.'s:19:"available_calendars";a:0:{}}';
 
 	// create session in agendav
         $stmt->execute();
@@ -104,7 +106,6 @@ class agendav extends rcube_plugin
     function logout($args)
     {
         $rcmail = rcmail::get_instance();
-
         $dbh = new PDO($this->get_db_driver().':dbname='.$rcmail->config->get('agendav_dbname', false).';host='.$rcmail->config->get('agendav_dbhost', false), $rcmail->config->get('agendav_dbuser', false), $rcmail->config->get('agendav_dbpass', false));
         $stmt = $dbh->prepare("delete from sessions where session_id=:id");
         $stmt->bindParam(':id', $_SESSION['agendav_sessid']);
