@@ -51,7 +51,7 @@ class agendav extends rcube_plugin
             case 'postgre':
                 return 'pgsql';
             default:
-                return $db[$active_group]['dbdriver'];
+                return $rcmail->config->get('agendav_dbtype', false);
         }
     }
 
